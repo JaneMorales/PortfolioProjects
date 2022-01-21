@@ -62,7 +62,9 @@ Set country1 = country2
 Where country1 = ' '
 
 Insert into DisneyStreamingData
-(show_id, type, title, director, cast, country, date_added, release_year, rating, duration, listed_in, description, country1)
+	(show_id, type, title, director, cast, 
+	 country, date_added, release_year, rating, 
+	 duration, listed_in, description, country1)
 Select * 
 From DisneyStreamingData2
 
@@ -187,6 +189,8 @@ Where listed_in like '%Animation%' and country1 = 'United Kingdom'
 Order by 1,2
 
 
+--Movies & TV Shows Outside of United States, Canada, & United Kingdom
+
 Select type, title, country1
 From [Streaming Service Project]..DisneyStreamingData
 Where country1 <> 'United Kingdom'
@@ -204,7 +208,7 @@ And date_addedConverted > '2021-10-01'
 Order by 2,3
 
 
---Movie and TV Show Ratings
+--Movies and TV Show Ratings for United States, Canada, & United Kingdom
 
 Select type, title, country1, release_year, rating
 From [Streaming Service Project]..DisneyStreamingData
@@ -224,6 +228,9 @@ Where country1 = 'United Kingdom'
 And rating = 'TV-PG'
 Order by 1,2
 
+
+--Movies and TV Show Ratings Outside of United States, Canada, & United Kingdom
+
 Select type, title, country1, release_year, rating
 From [Streaming Service Project]..DisneyStreamingData
 Where country1 <> 'United Kingdom'
@@ -233,7 +240,7 @@ And rating = 'PG-13'
 Order by 1,2
 
 
---Movie & TV Show Durations
+--Movies & TV Show Durations
 
 Select type, title, country1, release_year, duration
 From [Streaming Service Project]..DisneyStreamingData
