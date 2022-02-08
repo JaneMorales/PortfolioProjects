@@ -33,8 +33,6 @@ SET country2 = PARSENAME(REPLACE(country, ',', '.') , 1)
 
 Select *
 From [Streaming Service Project]..DisneyStreamingData
-
-
 ----------------------------------------------------------------------------------
 
 --Change NULL to blanks for country1 column
