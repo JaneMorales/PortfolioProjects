@@ -1,0 +1,251 @@
+---
+title: "Movie Dataset"
+author: "Janessa Morales"
+date: '2022-04-20'
+output: html_document
+---
+
+#############################
+install.packages('tidyverse')
+install.packages('tidyr')
+install.packages('ggplot2')
+install.packages('lubridate')
+install.packages('dplyr')
+#############################
+
+library(tidyverse)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+library(readxl)
+
+movies <- read_excel("movies.xlsx")
+View(movies)
+
+#===========================
+
+#EXPLORE DATA
+
+#===========================
+
+
+# Total Gross Profit Generated Per Genre
+
+total_gross_genre <- movies %>%
+  select("genre", "gross")
+ 
+ 
+# Top 5 movie genres with the most gross profit were Action, Comedy, Animation, Drama, and Adventure
+
+
+total_gross_genre %>%
+  group_by(genre) %>%
+  summarize(gross = sum(gross, na.rm = TRUE))
+  view(total_gross_genre)
+
+
+  genre            gross
+   <chr>            <dbl>
+ 1 Action    243435855754
+ 2 Adventure  45916596693
+ 3 Animation  80142045796
+ 4 Biography  20729581801
+ 5 Comedy     97175468462
+ 6 Crime      21355448322
+ 7 Drama      57150648537
+ 8 Family      2157897417
+ 9 Fantasy     1664501135
+10 History              0
+11 Horror     14543329602
+12 Music           110014
+13 Musical        5190692
+14 Mystery     2023670554
+15 Romance      188394999
+16 Sci-Fi       260489866
+17 Sport          1067629
+18 Thriller     323223113
+19 Western       32025886
+ 
+
+options(scipen=999)      # Removes scientific notation
+
+
+# Black and white chart
+
+ggplot(total_gross_genre, aes(x=genre, y=gross)) + 
+  geom_bar(stat = "identity") +
+  labs(title = "Total Gross Profit Generated Per Genre")
+  
+
+# Color chart
+
+ggplot(total_gross_genre, aes(genre, gross, fill = genre)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Total Gross Profit Generated Per Genre")
+  
+
+
+# Bugdet
+
+movie_budget <- movies %>%
+  select("name", "budget")
+  view(movie_budget)
+
+
+# Top 10 movies with the highest budget for production
+
+movie_budget %>% arrange(-budget)
+
+
+name                                             budget
+   <chr>                                             <dbl>
+ 1 Avengers: Endgame                             356000000
+ 2 Avengers: Infinity War                        321000000
+ 3 Star Wars: Episode VIII - The Last Jedi       317000000
+ 4 Pirates of the Caribbean: at World's End      300000000
+ 5 Justice League                                300000000
+ 6 Solo: A Star Wars Story                       275000000
+ 7 Star Wars: Episode IX - The Rise of Skywalker 275000000
+ 8 Superman Returns                              270000000
+ 9 Tangled                                       260000000
+10 The Lion King                                 260000000
+  
+
+# Top 10 movies with the lowest budget for production
+
+movie_budget %>% arrange(budget)
+
+
+name                        budget
+   <chr>                        <dbl>
+ 1 A Polish Vampire in Burbank   3000
+ 2 Black Wall Street Burning     5000
+ 3 Following                     6000
+ 4 El Mariachi                   7000
+ 5 Primer                        7000
+ 6 More to Life                  7000
+ 7 Boardinghouse                10000
+ 8 The Robinsons                10000
+ 9 Paranormal Activity          15000
+10 It's Just Us                 15000
+
+
+
+# Rating
+
+movie_rating <- movies %>%
+  select("name", "rating")
+  view(movie_rating)
+
+
+# Total number of movies based on ratings
+
+movie_rating %>% count(rating, sort = TRUE)
+
+
+rating        n
+   <chr>     <int>
+ 1 R          3697
+ 2 PG-13      2112
+ 3 PG         1252
+ 4 Not Rated   283
+ 5 G           153
+ 6 NA           77
+ 7 Unrated      52
+ 8 NC-17        23
+ 9 TV-MA         9
+10 TV-PG         5
+11 X             3
+12 Approved      1
+13 TV-14         1
+
+
+
+# Runtime
+
+movie_runtime <- movies %>%
+  select("name", "runtime")
+  view(movie_runtime)
+
+
+# Top 10 movies with the highest runtime shown below
+
+
+movie_runtime %>% arrange(desc(runtime))
+
+  
+ name                              runtime
+   <chr>                               <dbl>
+ 1 The Best of Youth                     366
+ 2 Little Dorrit                         357
+ 3 Gettysburg                            271
+ 4 Hamlet                                242
+ 5 The Beautiful Troublemaker            238
+ 6 Once Upon a Time in America           229
+ 7 Lagaan: Once Upon a Time in India     224
+ 8 Heaven's Gate                         219
+ 9 Gods and Generals                     219
+10 Kabhi Khushi Kabhie Gham...           210
+  
+
+# Top 10 movies with the lowest runtime shown below 
+
+movie_runtime %>% arrange(runtime)
+
+
+ name                           runtime
+   <chr>                            <dbl>
+ 1 The Business of Show Business       55
+ 2 Winnie the Pooh                     63
+ 3 The Land Before Time                69
+ 4 Following                           69
+ 5 Once Upon a Forest                  71
+ 6 9 Songs                             71
+ 7 Here Come the Littles               72
+ 8 Creepozoids                         72
+ 9 BÃ©bÃ©'s Kids                       72
+10 We're Back! A Dinosaur's Story      72
+
+
+
+# Year
+
+movie_year <- movies %>%
+ select("name", "year")
+ view(movie_year)
+ 
+ 
+# Movies that were released after 2018
+ 
+movie_2018_after <- filter(movie_year, year > 2018)
+  
+movie_after_2018 <- movie_2018_after               #renaming data frame
+  view(movie_after_2018)
+  
+
+
+# Production Company
+
+movie_company <- movies %>%
+  select("name", "company")
+  view(movie_company)
+ 
+
+# Top 10 production companies shown with the most movies
+
+movie_company %>% count(company, sort = TRUE)
+
+
+ company                       n
+   <chr>                     <int>
+ 1 Universal Pictures          377
+ 2 Warner Bros.                334
+ 3 Columbia Pictures           332
+ 4 Paramount Pictures          320
+ 5 Twentieth Century Fox       240
+ 6 New Line Cinema             174
+ 7 Touchstone Pictures         132
+ 8 Metro-Goldwyn-Mayer (MGM)   125
+ 9 Walt Disney Pictures        123
+10 TriStar Pictures             94
