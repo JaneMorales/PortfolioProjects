@@ -154,33 +154,34 @@ FROM [Case Study].[dbo].[divvy-tripdata-202106]
 
 SELECT DISTINCT(month_year), COUNT(member_casual) AS Total_member
 FROM [Case Study].[dbo].[divvy-tripdata-202101]
-WHERE member_casual = 'member'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'member'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202102]
-WHERE member_casual = 'member'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'member'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual) 
 FROM [Case Study].[dbo].[divvy-tripdata-202103]
-WHERE member_casual = 'member'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'member'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202104]
-WHERE member_casual = 'member'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'member'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202105]
-WHERE member_casual = 'member'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'member'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual) 
 FROM [Case Study].[dbo].[divvy-tripdata-202106]
-WHERE member_casual = 'member'
-GROUP BY month_year, member_casual
+	WHERE member_casual = 'member'
+	GROUP BY month_year, member_casual
+
 
 
 --TOTAL NUMBER OF CASUAL RIDERS FOR EACH MONTH IN 2021
@@ -188,34 +189,35 @@ GROUP BY month_year, member_casual
 
 SELECT DISTINCT(month_year), COUNT(member_casual) AS Total_casual
 FROM [Case Study].[dbo].[divvy-tripdata-202101]
-WHERE member_casual = 'casual'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202102]
-WHERE member_casual = 'casual'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202103]
-WHERE member_casual = 'casual'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202104]
-WHERE member_casual = 'casual'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202105]
-WHERE member_casual = 'casual'
-GROUP BY month_year, member_casual
-	UNION
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, member_casual
+		UNION
 SELECT DISTINCT(month_year), COUNT(member_casual)
 FROM [Case Study].[dbo].[divvy-tripdata-202106]
-WHERE member_casual = 'casual'
-GROUP BY month_year, member_casual
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, member_casual
 ----------------------------------------------------------------------------------------------------------------------
+
 
 
 --AVERAGE RIDE LENGTH FOR MEMBERS FOR EACH MONTH IN 2021
@@ -259,6 +261,7 @@ FROM [Case Study].[dbo].[divvy-tripdata-202106]
 	GROUP BY month_year
 
 
+
 --AVERAGE RIDE LENGTH FOR CASUAL RIDERS FOR EACH MONTH IN 2021
 
 
@@ -299,6 +302,7 @@ FROM [Case Study].[dbo].[divvy-tripdata-202106]
 	WHERE member_casual = 'casual'
 	GROUP BY month_year
 --------------------------------------------------------------------------------------------------------------------------
+
 
 
 --TOTAL OF EACH BIKE USED AND AVERAGE TIME ON BIKE BY MEMBERS AND CASUAL RIDERS FOR JANUARY 2021
@@ -355,6 +359,7 @@ WHERE member_casual = 'casual'
 -----------------------------------------------------------------------------------------------------------
 
 
+
 --TOTAL OF EACH BIKE USED AND AVERAGE TIME ON BIKE BY MEMBERS AND CASUAL RIDERS FOR FEBRUARY 2021
 
 
@@ -407,6 +412,7 @@ WHERE member_casual = 'casual'
 	AND rideable_type = 'docked_bike'
 	GROUP BY rideable_type
 ---------------------------------------------------------------------------------------------------------
+
 
 
 --TOTAL OF EACH BIKE USED AND AVERAGE TIME ON BIKE BY MEMBERS AND CASUAL RIDERS FOR MARCH 2021
@@ -463,6 +469,7 @@ WHERE member_casual = 'casual'
 ---------------------------------------------------------------------------------------------------------
 
 
+
 --TOTAL OF EACH BIKE USED AND AVERAGE TIME ON BIKE BY MEMBERS AND CASUAL RIDERS FOR APRIL 2021
 
 
@@ -515,6 +522,7 @@ WHERE member_casual = 'casual'
 	AND rideable_type = 'docked_bike'
 	GROUP BY rideable_type
 ---------------------------------------------------------------------------------------------------------
+
 
 
 --TOTAL OF EACH BIKE USED AND AVERAGE TIME ON BIKE BY MEMBERS AND CASUAL RIDERS FOR MAY 2021
@@ -571,6 +579,7 @@ WHERE member_casual = 'casual'
 ---------------------------------------------------------------------------------------------------------
 
 
+
 --TOTAL OF EACH BIKE USED AND AVERAGE TIME ON BIKE BY MEMBERS AND CASUAL RIDERS FOR JUNE 2021
 
 
@@ -625,12 +634,14 @@ WHERE member_casual = 'casual'
 ---------------------------------------------------------------------------------------------------------
 
 
+
 --MOST COMMON DAY TO RIDE BIKES AND AVERAGE TIME PER DAY FOR MEMBERS AND CASUAL RIDERS IN EACH MONTH OF 2021
 
 ----NOTE: 1 = SUNDAY, 2 = MONDAY, 3 = TUESDAY, 4 = WEDNESDAY, 5 = THURSDAY, 6 = FRIDAY, 7 = SATURDAY
 
 
 --JANUARY 2021
+
 
 SELECT month_year, 
        day_of_week, 
@@ -639,9 +650,9 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_members_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202101]
-WHERE member_casual = 'member'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'member'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 SELECT month_year, 
        day_of_week, 
@@ -650,12 +661,13 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_casual_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202101]
-WHERE member_casual = 'casual'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 
 --FEBRUARY 2021
+	
 	
 SELECT month_year, 
        day_of_week, 
@@ -664,9 +676,9 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_members_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202102]
-WHERE member_casual = 'member'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'member'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 SELECT month_year, 
        day_of_week, 
@@ -675,13 +687,14 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_casual_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202102]
-WHERE member_casual = 'casual'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 
 --MARCH 2021
 
+
 SELECT month_year, 
        day_of_week, 
 	   CAST(CAST(AVG(CAST(CAST(ride_length_modified AS Datetime) AS Float)) AS Datetime) AS Time) 
@@ -689,9 +702,9 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_members_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202103]
-WHERE member_casual = 'member'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'member'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 SELECT month_year, 
        day_of_week, 
@@ -700,13 +713,14 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_casual_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202103]
-WHERE member_casual = 'casual'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 
 --APRIL 2021
 
+
 SELECT month_year, 
        day_of_week, 
 	   CAST(CAST(AVG(CAST(CAST(ride_length_modified AS Datetime) AS Float)) AS Datetime) AS Time) 
@@ -714,9 +728,9 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_members_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202104]
-WHERE member_casual = 'member'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'member'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 SELECT month_year, 
        day_of_week, 
@@ -725,13 +739,14 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_casual_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202104]
-WHERE member_casual = 'casual'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 
 --MAY 2021
 
+
 SELECT month_year, 
        day_of_week, 
 	   CAST(CAST(AVG(CAST(CAST(ride_length_modified AS Datetime) AS Float)) AS Datetime) AS Time) 
@@ -739,9 +754,9 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_members_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202105]
-WHERE member_casual = 'member'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'member'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 SELECT month_year, 
        day_of_week, 
@@ -750,13 +765,14 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_casual_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202105]
-WHERE member_casual = 'casual'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 
 --JUNE 2021
 
+
 SELECT month_year, 
 	   day_of_week, 
 	   CAST(CAST(AVG(CAST(CAST(ride_length_modified AS Datetime) AS Float)) AS Datetime) AS Time) 
@@ -764,9 +780,9 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_members_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202106]
-WHERE member_casual = 'member'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'member'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
 
 SELECT month_year, 
 	   day_of_week, 
@@ -775,6 +791,6 @@ SELECT month_year,
 	   COUNT(day_of_week) 
 		AS Total_casual_per_day
 FROM [Case Study].[dbo].[divvy-tripdata-202106]
-WHERE member_casual = 'casual'
-GROUP BY month_year, day_of_week
-ORDER BY COUNT(day_of_week) DESC
+	WHERE member_casual = 'casual'
+	GROUP BY month_year, day_of_week
+		ORDER BY COUNT(day_of_week) DESC
