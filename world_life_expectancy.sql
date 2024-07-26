@@ -168,7 +168,7 @@ FROM world_life_expectancy
 GROUP BY country
 HAVING life_exp > 0
 AND GDP > 0
-ORDER BY GDP;                              -- GDP is lower when life expectancy is below the average    
+ORDER BY GDP;                              -- When GDP is low, life expectancy is below the average    
 
 SELECT 
 SUM(CASE
