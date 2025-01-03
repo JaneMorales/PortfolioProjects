@@ -213,20 +213,7 @@ WHERE NOT EXISTS (
     FROM orders o
     WHERE o.customer_id = c.customer_id
 );
-----------------------------------------------------------------------------------------------------------------------------------------------
--- FOR QUESTION 13:
--- This query works as follows: The subquery checks if any orders exist for each customer by comparing customer_id in the customers table to customer_id in the orders table. NOT EXISTS ensures that only customers who have no matching orders (i.e., customers who haven't ordered anything) are returned.
 
--- When using EXISTS or NOT EXISTS, the database engine evaluates whether the subquery returns any rows or no rows. The actual data returned by the subquery doesn't matter—only whether or not it returns something.
--- The 1 is commonly used in subqueries within an EXISTS clause because:
--- It's a constant value, so it doesn't interfere with the query's logic.
--- It avoids the need to select any specific columns.
--- It keeps the subquery as efficient as possible because it doesn't need to return any actual data—just the presence of rows.
-
--- Subquery: The subquery checks whether there are any rows in the orders table that match the current customer. The condition WHERE o.customer_id = c.customer_id links the orders table to the customers table.
--- EXISTS / NOT EXISTS: If the subquery returns any rows, the EXISTS condition is TRUE and the customer is excluded from the results (because of NOT EXISTS). If the subquery returns no rows (meaning the customer has no orders), NOT EXISTS becomes TRUE, and the customer is included in the final result.
--- SELECT 1: The SELECT 1 in the subquery is just a placeholder. It doesn't affect the result of the EXISTS clause because EXISTS is only concerned with whether rows are returned, not with the actual data in those rows. You could technically use SELECT *, SELECT NULL, or any other value in place of 1—they all work the same way.
---------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- 14. Find Products Ordered by a Specific Customer
 -- Write a query to find all products ordered by 'Jane Smith'. Display the product name, quantity ordered, and the price.
 
@@ -252,5 +239,3 @@ WHERE o.total_amount = (
     FROM orders
     WHERE customer_id = c.customer_id
 );
-
--- Explanation: JOIN customers c ON c.customer_id = o.customer_id: This joins the customers table with the orders table, so we can work with the customer's name and their orders. Subquery (SELECT MAX(total_amount) FROM orders WHERE customer_id = c.customer_id): The subquery finds the maximum total_amount for each customer by grouping them using customer_id. This returns the highest total_amount for each customer. WHERE Clause: The WHERE clause in the main query compares the total_amount of each order with the maximum total amount for that specific customer (returned by the subquery). This ensures that only the most expensive order for each customer is selected.
