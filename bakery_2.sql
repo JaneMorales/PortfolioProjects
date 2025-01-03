@@ -204,16 +204,6 @@ LEFT JOIN orders o
 	ON c.customer_id = o.customer_id
 WHERE o.order_id IS NULL;
 
--- or --
-
-SELECT first_name, last_name, email
-FROM customers c
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM orders o
-    WHERE o.customer_id = c.customer_id
-);
-
 -- 14. Find Products Ordered by a Specific Customer
 -- Write a query to find all products ordered by 'Jane Smith'. Display the product name, quantity ordered, and the price.
 
