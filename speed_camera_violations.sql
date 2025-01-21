@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS speed_camera_violations;
 USE speed_camera_violations;
 
 CREATE TABLE speed_camera_violations.violations_copy (
-	row_id INT AUTO_INCREMENT PRIMARY KEY,
+    row_id INT AUTO_INCREMENT PRIMARY KEY,
     camera_id VARCHAR(10),
     address VARCHAR(255),
     violation_date DATE,  
