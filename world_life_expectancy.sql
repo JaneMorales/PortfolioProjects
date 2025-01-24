@@ -168,7 +168,7 @@ FROM world_life_expectancy
 GROUP BY country
 HAVING life_exp > 0
 AND GDP > 0
-ORDER BY GDP;                              -- GDP is lower when life expectancy is below the average    
+ORDER BY GDP;                              
 
 SELECT 
 SUM(CASE
@@ -178,10 +178,17 @@ END) high_GDP_count
 FROM world_life_expectancy;               -- 1326 countries have high GDP 
 
 SELECT 
+SUM(CASE
+	WHEN GDP <= 1500 THEN 1
+	ELSE 0
+END) low_GDP_count                    
+FROM world_life_expectancy;               -- 1612 countries have low GDP 
+
+SELECT 
 SUM(CASE WHEN GDP >= 1500 THEN 1 ELSE 0 END) high_GDP_count,
 AVG(CASE WHEN GDP >= 1500 THEN `Life expectancy` ELSE NULL END) high_GDP_life_exp,   -- life expectancy with a high GDP for all 1326 countries is about 74
 SUM(CASE WHEN GDP <= 1500 THEN 1 ELSE 0 END) low_GDP_count,
-AVG(CASE WHEN GDP <= 1500 THEN `Life expectancy` ELSE NULL END) low_GDP_life_exp     -- life expectancy with a low GDP for all 1612 countries is about 64
+AVG(CASE WHEN GDP <= 1500 THEN `Life expectancy` ELSE NULL END) low_GDP_life_exp     -- life expectancy with a low GDP for all 1612 countries is about 65
 FROM world_life_expectancy;                
 
 -- What is the average life expectancy of status (developed country or developing country)?
