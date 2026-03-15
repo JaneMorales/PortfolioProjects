@@ -266,9 +266,9 @@ LIMIT 10;
 
 SELECT 
     camera_id,
-    ROUND(AVG(violations), 0) AS avg_per_camera_2022
+    ROUND(AVG(violations), 0) AS avg_per_camera_2023
 FROM violations_copy
 WHERE violation_date BETWEEN '2023-01-01' AND '2023-12-31'
 GROUP BY camera_id
-ORDER BY avg_per_camera_2022 DESC
+ORDER BY avg_per_camera_2023 DESC
 LIMIT 10;
