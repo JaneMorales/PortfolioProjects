@@ -70,28 +70,6 @@ SELECT camera_id, address
 FROM violations_copy
 WHERE TRIM(camera_id) = '';  -- good to go
 
--- camera_ids with duplicate dates
-SELECT 
-    camera_id,
-    violation_date,
-    COUNT(*) AS row_count
-FROM violations_copy
-GROUP BY camera_id, violation_date
-HAVING COUNT(*) > 1;                  -- CHI070, CHI121, CHI141, CHI197
-
-CREATE TEMPORARY TABLE agg AS
-SELECT 
-    camera_id,
-    violation_date,
-    SUM(violations) AS total_violations
-FROM violations_copy
-GROUP BY camera_id, violation_date;
-
-DELETE FROM violations_copy;
-
-INSERT INTO violations_copy (camera_id, violation_date, violations)
-SELECT camera_id, violation_date, total_violations
-FROM agg;
 ------------------------------------------------------------------------------------------------------------------------------
 # DATA ANALYSIS
 
